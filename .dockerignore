@@ -1,0 +1,9 @@
+.vscode
+.idea
+venv
+docs
+db.*
+__pycache__
+.gitignore
+Dockerfile
+README.md

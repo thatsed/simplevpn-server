@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block module_css %}
+	{% block extra_css %}{% endblock %}
+{% endblock %}
+
+{% block module_content %}
+	<div class="container">
+		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a href="{{ current_module.index }}">{{ current_module.title }}</a></li>
+		    {% block breadcrumb_items %}{% endblock %}
+		  </ol>
+		</nav>
+		<ul class="nav nav-pills mb-4">
+		  <li class="nav-item">
+		    <a class="nav-link{% if request.resolver_match.url_name == 'index' %} active{% endif %}" href="{% url 'vpn_manager:index' %}">Home</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link{% if request.resolver_match.url_name == 'list_peers' %} active{% endif %}" href="{% url 'vpn_manager:list_peers' %}" id="settings_link">VPN</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link{% if request.resolver_match.url_name == 'tool_qrcode' %} active{% endif %}" href="{% url 'vpn_manager:tool_qrcode' %}" id="settings_link">QRCode Tool</a>
+		  </li>
+		</ul>
+		{% block content %}{% endblock %}
+	</div>
+	{% block modals %}{% endblock %}
+{% endblock %}
+
+{% block module_js %}
+	<script type="text/javascript">
+		$('.copy-to-clipboard').on('click', function () {
+		  let target = $(this).data('target');
+		  $(target).select();
+		  document.execCommand('copy');
+	  })
+		$('.download').on('click', function () {
+		  let target = $(this).data('target');
+		  let data = $(target).text();
+		  document.execCommand('copy');
+	  });
+	</script>
+	{% block extra_js %}{% endblock %}
+{% endblock %}

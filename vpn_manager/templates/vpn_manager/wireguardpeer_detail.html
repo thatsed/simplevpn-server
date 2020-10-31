@@ -1,0 +1,59 @@
+{% extends "./app_base.html" %}
+{% load simple_vpn_filters %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap_pagination %}
+
+{% block title %}
+	{% blocktrans with name=peer.name %}Download {{ name }}'s configuration{% endblocktrans %}
+{% endblock %}
+
+{% block breadcrumb_items %}
+	<li class="breadcrumb-item"><a href="{% url 'vpn_manager:list_peers' %}">{% trans "Peers" %}</a></li>
+	<li class="breadcrumb-item active" aria-current="page">{{ peer.name|truncatechars:32 }}</li>
+{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div class="col-12">
+			<h1 class="lead ml-3 mb-5">
+				{% blocktrans with name=peer.name %}Download {{ name }}'s configuration{% endblocktrans %}
+			</h1>
+		</div>
+		<div class="col-12 col-md">
+			{% if not peer.private_key %}
+				<div class="alert alert-warning">{% blocktrans %}<strong class="alert-title">Warning</strong> This configuration must be completed with the PrivateKey previously generated. For reference, the corresponding PublicKey is shown instead with a note.{% endblocktrans %}</div>
+			{% endif %}
+			<div class="card">
+				<div class="card-header">
+					{% trans "Text Configuration" %}
+				</div>
+				<div class="card-body">
+					<textarea rows="20" class="form-control text-monospace" id="config" readonly>{{ peer.get_config }}</textarea>
+				</div>
+				<div class="card-footer">
+					<button class="btn btn-primary copy-to-clipboard" data-target="#config" data-ext="conf">
+						{% trans "Copy" %}
+					</button>
+					<a class="btn btn-success download" href="data:text/plain;base64,{{ peer.get_config|base64encode }}" download="{{ peer.name|slugify }}.conf" data-target="#config">
+						{% trans "Download" %}
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 col-md-auto mt-5 mt-md-0">
+			<div id="qrcode" class="mx-auto"></div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block extra_js %}
+	<script src="{% static 'js/qrcode.min.js' %}"></script>
+	<script type="text/javascript">
+		$(function () {
+			let qrcode = new QRCode("qrcode", {correctLevel: QRCode.CorrectLevel.L});
+			let config = $('#config').val();
+			qrcode.makeCode(config);
+    });
+	</script>
+{% endblock %}

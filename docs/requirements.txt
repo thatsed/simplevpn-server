@@ -1,0 +1,4 @@
+sphinx
+sphinxcontrib-django
+sphinx-material
+recommonmark

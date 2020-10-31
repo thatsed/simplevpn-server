@@ -1,0 +1,76 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>{{ app_title }}</title>
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<style>
+		@media (min-width: 768px) {
+			.navbar-expand-md .navbar-collapse.hide {
+				display: none !important;
+			}
+		}
+		.asteriskField {
+			color: red;
+			margin-left: 4px;
+		}
+		.alert > .alert-title {
+			display: block;
+			margin-bottom: 3px;
+		}
+		.nav-tabs .nav-link {
+			border: 0;
+		}
+	</style>
+	{% block module_css %}{% endblock %}
+</head>
+<body>
+	<nav class="navbar navbar-expand-md fixed-top-sm justify-content-start flex-nowrap bg-dark navbar-dark">
+		<div class="container">
+	    <a href="/" class="navbar-brand">SimpleVPN</a>
+	    <ul class="navbar-nav flex-row ml-2 mr-auto mr-md-0">
+	      <li class="nav-item">
+	        <a class="nav-link px-2" href="#">{% trans "Repo" %}</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link px-2" href="#">{% trans "Help" %}</a>
+	      </li>
+	    </ul>
+			<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navtabs">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+			<div class="navbar-collapse hide collapse pt-2" id="navtabs">
+				<ul class="navbar-nav">
+		    {% for module in modules %}
+		      <li class="nav-item{% if module == current_module %} active{% endif %}">
+		        <a class="nav-link" href="{{ module.index }}">{{ module.title }}</a>
+		      </li>
+			  {% endfor %}
+		    </ul>
+		  </div>
+		</div>
+	</nav>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark pb-0 d-none d-md-block">
+	  <div class="navbar-collapse collapse pt-2 pt-md-0 container hidden-sm-down">
+	    <ul class="nav nav-tabs">
+	    {% for module in modules %}
+	      <li class="nav-item">
+	        <a class="nav-link {% if module == current_module %}active{% else %}text-light{% endif %}" href="{{ module.index }}">{{ module.title }}</a>
+	      </li>
+		  {% endfor %}
+	    </ul>
+	  </div>
+	</nav>
+	<div class="container-fluid py-4">
+		{% block module_content %}{% endblock %}
+	</div>
+
+	<script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+	{% block module_js %}{% endblock %}
+</body>
+</html>

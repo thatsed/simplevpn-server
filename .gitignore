@@ -1,0 +1,7 @@
+.vscode
+.idea
+venv
+docs/build
+db.*
+__pycache__
+simple_vpn

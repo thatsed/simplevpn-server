@@ -1,0 +1,32 @@
+{% extends "./app_base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+
+{% block breadcrumb_items %}
+	<li class="breadcrumb-item"><a href="{% url 'vpn_manager:list_peers' %}">{% trans "Peers" %}</a></li>
+	<li class="breadcrumb-item"><a href="{% url 'vpn_manager:show_peer' peer.pk %}">{{ peer.name|truncatechars:32 }}</a></li>
+	<li class="breadcrumb-item active" aria-current="page">{% trans "Delete" %}</li>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+				{% blocktrans with name=peer.name %}Confirm deletion of peer <strong>{{ name }}</strong>{% endblocktrans %}
+			</div>
+			<div class="card-body">
+				<div class="alert alert-danger">
+					<strong>{% trans "Confirm deletion" %}</strong><br>
+					{% spaceless %}{% blocktrans with name=peer.name %}
+					By deleting this peer, you will disrupt current connections and invalidate the credentials.
+					Are you sure you want to delete <strong>{{ name }}</strong>?
+					{% endblocktrans %}{% endspaceless %}
+				</div>
+				<form method="post">
+					{% csrf_token %}
+					<button class="btn btn-danger" type="submit" name="submit">{% trans "Confirm" %}</button>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

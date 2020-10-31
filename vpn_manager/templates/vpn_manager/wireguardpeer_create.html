@@ -1,0 +1,9 @@
+{% extends "./wireguardpeer_form.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Create new Peer" %}{% endblock %}
+
+{% block breadcrumb_items %}
+	<li class="breadcrumb-item"><a href="{% url 'vpn_manager:list_peers' %}">{% trans "Peers" %}</a></li>
+	<li class="breadcrumb-item active" aria-current="page">{% trans "New" %}</li>
+{% endblock %}

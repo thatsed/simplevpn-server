@@ -1,0 +1,10 @@
+{% extends "./wireguardpeer_form.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Edit Peer" %}{% endblock %}
+
+{% block breadcrumb_items %}
+	<li class="breadcrumb-item"><a href="{% url 'vpn_manager:list_peers' %}">{% trans "Peers" %}</a></li>
+	<li class="breadcrumb-item"><a href="{% url 'vpn_manager:show_peer' form.instance.pk %}">{{ form.instance.name|truncatechars:32 }}</a></li>
+	<li class="breadcrumb-item active" aria-current="page">{% trans "Edit" %}</li>
+{% endblock %}

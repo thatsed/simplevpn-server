@@ -1,0 +1,26 @@
+stages:
+  - build
+
+build-docker:
+  image: docker:19.03.12
+  stage: build
+  script:
+    - docker pull $CI_REGISTRY_IMAGE:latest || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:latest --tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+    - if [ ! -z $CI_COMMIT_TAG ]; then docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG; fi
+    - docker push $CI_REGISTRY_IMAGE:latest
+
+pages:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  stage: build
+  script:
+    - pip install -r docs/requirements.txt
+    - cd docs
+    - make html
+    - mv build/html ../public
+  artifacts:
+    paths:
+      - public
+  only:
+    - dev
