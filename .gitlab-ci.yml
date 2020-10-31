@@ -1,8 +1,14 @@
+variables:
+  DOCKER_DRIVER: overlay2
+
+services:
+  - docker:stable-dind
+
 stages:
   - build
 
 build-docker:
-  image: docker:19.03.12
+  image: docker:stable
   stage: build
   script:
     - docker pull $CI_REGISTRY_IMAGE:latest || true
