@@ -32,4 +32,5 @@ else
   echo "Configuration saved"
 fi
 
+iptables -A FORWARD -i $SIMPLE_VPN_INTERFACE -j ACCEPT; iptables -A FORWARD -o $SIMPLE_VPN_INTERFACE -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
 exec gunicorn SimpleVPN.wsgi:application --bind 0.0.0.0:8000 --workers 3
