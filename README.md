@@ -2,11 +2,13 @@
 
 ## Deployment
 
+> Replace localhost with the IP address or domain name of your machine.
+
 ```bash
 ~$ docker run --rm -d \
       --cap-add NET_ADMIN \
       --env SIMPLE_VPN_ENDPOINT=localhost \
-      --env SIMPLE_VPN_SUBNET=10.100.20.0/24 \
+      --env SIMPLE_VPN_SUBNET=10.100.20.1/24 \
       -p 8000:8000 \
       -p 1194:1194 \
       -v /opt/simplevpn:/data \
