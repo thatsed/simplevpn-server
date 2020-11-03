@@ -16,12 +16,13 @@
 
 ### First Setup
 
-#### User creation
-    ```bash
+* User creation
+
+  ```bash
     ~$ docker exec -it simplevpn python manage.py createsuperuser
     Username (leave blank to use 'root'): admin_user_name
     Email address: 
     Password: 
     Password (again): 
     Superuser created successfully.
-    ```
+  ```
