@@ -1,3 +1,5 @@
+from ipaddress import IPv4Interface
+
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -29,5 +31,6 @@ class WireguardPeerForm(forms.ModelForm):
             self.instance.allowed_ips = '0.0.0.0/0' if self.cleaned_data['killswitch'] else '0.0.0.0/1,128.0.0.0/1'
         else:
             self.instance.dns = ''
-            self.instance.allowed_ips = self.instance.interface.address
+            self.instance.allowed_ips = ','.join(
+                str(IPv4Interface(ip).network) for ip in self.instance.interface.get_address_list())
         return super().save(commit)
