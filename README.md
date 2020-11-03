@@ -10,7 +10,7 @@
       --env SIMPLE_VPN_ENDPOINT=localhost \
       --env SIMPLE_VPN_SUBNET=10.100.20.1/24 \
       -p 8000:8000 \
-      -p 1194:1194 \
+      -p 1194:1194/udp \
       -v /opt/simplevpn:/data \
       --name simplevpn \
       registry.gitlab.com/simplevpn/simplevpn-server

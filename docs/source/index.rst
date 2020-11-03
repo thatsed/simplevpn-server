@@ -29,7 +29,7 @@ Docker deployment
                  --cap-add NET_ADMIN \
                  --env SIMPLE_VPN_ENDPOINT=<your-machine-ip-address-or-domain> \
                  -p 8000:8000 \
-                 -p 1194:1194 \
+                 -p 1194:1194/udp \
                  -v /opt/simplevpn:/data \
                  registry.gitlab.com/simplevpn/simplevpn-server
 
