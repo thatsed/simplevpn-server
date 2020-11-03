@@ -32,7 +32,7 @@
 					<textarea rows="20" class="form-control text-monospace" id="config" readonly>{{ peer.get_config }}</textarea>
 				</div>
 				<div class="card-footer">
-					<button class="btn btn-primary copy-to-clipboard" data-target="#config" data-ext="conf">
+					<button class="btn btn-primary copy-to-clipboard" data-target="#config">
 						{% trans "Copy" %}
 					</button>
 					<a class="btn btn-success download" href="data:text/plain;base64,{{ peer.get_config|base64encode }}" download="{{ peer.name|slugify }}.conf" data-target="#config">

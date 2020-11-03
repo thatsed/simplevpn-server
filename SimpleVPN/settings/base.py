@@ -151,3 +151,5 @@ WIREGUARD_ENDPOINT = os.environ.get('SIMPLE_VPN_ENDPOINT', 'localhost')
 SIMPLE_VPN_DNS = os.environ.get('SIMPLE_VPN_DNS', '1.1.1.1,1.0.0.1')
 
 SIMPLE_VPN_INTERFACE = os.environ.get('SIMPLE_VPN_INTERFACE', 'simplevpn')
+
+SIMPLE_VPN_DISABLE_SHARE_LINK = os.environ.get('SIMPLE_VPN_DISABLE_SHARE_LINK') == 'true'

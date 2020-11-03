@@ -1,4 +1,3 @@
---extra-index-url https://pypi:hDWUmzVBgng78cpqeRGY@gitlab.com/api/v4/projects/22191508/packages/pypi/simple
 Django
 django-wireguard
 django-bootstrap-pagination

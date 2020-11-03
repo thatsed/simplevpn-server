@@ -18,20 +18,16 @@ else
 
   echo $SIMPLE_VPN_SUBNET | xargs python manage.py setup_interface $SIMPLE_VPN_INTERFACE --address
   # echo $SIMPLE_VPN_SUBNET | xargs python manage.py create_peer simplevpn default --allowed-ips
-
-  if [ -z $DJANGO_SUPERUSER_PASSWORD ]; then
-    export DJANGO_SUPERUSER_PASSWORD=$(tr -dc 'a-zA-Z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c16)
-  fi
-
-  python manage.py createsuperuser --username simplevpn --email "mail@example.com" --noinput
-  echo User Created: simplevpn $DJANGO_SUPERUSER_PASSWORD
-
-  unset DJANGO_SUPERUSER_PASSWORD
+  # if [ -z $DJANGO_SUPERUSER_PASSWORD ]; then
+  #   export DJANGO_SUPERUSER_PASSWORD=$(tr -dc 'a-zA-Z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c16)
+  # fi
+  # python manage.py createsuperuser --username simplevpn --email "mail@example.com" --noinput
+  # echo User Created: simplevpn $DJANGO_SUPERUSER_PASSWORD
+  # unset DJANGO_SUPERUSER_PASSWORD
 
   # if configuration is successful, save config file
   touch /data/.config
   echo "DJANGO_SECRET_KEY=\"$DJANGO_SECRET_KEY\"" >> /data/.config
-  echo "SIMPLE_VPN_SUBNET=\"$SIMPLE_VPN_SUBNET\"" >> /data/.config
   echo "SIMPLE_VPN_INTERFACE=$SIMPLE_VPN_INTERFACE" >> /data/.config
   echo "Configuration saved"
 fi

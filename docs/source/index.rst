@@ -2,7 +2,7 @@
 SimpleVPN Server
 ================
 
-.. blo SimpleVPN is a self-hosted VPN solution powered by WireGuard and Django.
+    SimpleVPN is a self-hosted VPN solution powered by WireGuard and Django.
 
 Deployment
 ==========
@@ -13,7 +13,7 @@ Prerequisites
 ~~~~~~~~~~~~~
 .. important:: Don't skip those steps!
 
-* Make sure the host has WireGuard kernel modules `wireguard-dkms` loaded.
+* Make sure the host has WireGuard kernel modules `wireguard-dkms` installed and loaded.
 * If you want to redirect traffic through the VPN, enable IPv4 forwarding by adding the line `net.ipv4.ip_forward = 1` to `/etc/sysctl.conf`.
 * Create a folder to be mounted for config data. In the following example, we'll be using `/opt/simplevpn`
 * Retrieve your machine's IP address or domain name and keep that in mind
@@ -31,7 +31,7 @@ Docker deployment
                  -p 8000:8000 \
                  -p 1194:1194 \
                  -v /opt/simplevpn:/data \
-                 simplevpn
+                 registry.gitlab.com/simplevpn/simplevpn-server
 
 
 2. Create a superuser account
@@ -44,3 +44,5 @@ Docker deployment
 
 
 3. Navigate to your machine's IP address or domain name on port 8000. Login with the credential created in the previous step.
+
+4. (Optional) setup NGINX reverse proxy with Cerbot to obtain a Let's Encrypt ssl certificate.
