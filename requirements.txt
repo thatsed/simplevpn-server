@@ -1,5 +1,5 @@
-Django
-django-wireguard
-django-bootstrap-pagination
-django-crispy-forms
-whitenoise
+Django==3.1.2
+django-bootstrap-pagination==1.7.1
+django-crispy-forms==1.9.2
+django-wireguard==0.1.4
+whitenoise==5.2.0
