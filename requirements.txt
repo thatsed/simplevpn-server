@@ -1,6 +1,6 @@
---extra-index-url https://svpn-server-ci:xZHJsWgHXsAxwTswUPzo@gitlab.com/api/v4/projects/22088520/packages/pypi/simple
+--extra-index-url https://pypi:hDWUmzVBgng78cpqeRGY@gitlab.com/api/v4/projects/22191508/packages/pypi/simple
 Django
-django-simplevpn
+django-wireguard
 django-bootstrap-pagination
 django-crispy-forms
 whitenoise

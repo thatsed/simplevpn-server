@@ -2,18 +2,18 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 
-from simple_vpn.forms import WireguardPeerForm
-from simple_vpn.models import WireguardPeer
+from vpn_manager.forms import WireguardPeerForm
+from django_wireguard.models import WireguardPeer
 from vpn_manager.models import ShowConfigLink
 
 
 class IndexView(PermissionRequiredMixin, TemplateView):
-    permission_required = 'simple_vpn.view_wireguardpeer'
+    permission_required = 'django_wireguard.view_wireguardpeer'
     template_name = 'vpn_manager/index.html'
 
 
 class ListPeerView(PermissionRequiredMixin, ListView):
-    permission_required = 'simple_vpn.view_wireguardpeer'
+    permission_required = 'django_wireguard.view_wireguardpeer'
     model = WireguardPeer
     template_name = 'vpn_manager/wireguardpeer_list.html'
     context_object_name = 'peers'
@@ -22,23 +22,25 @@ class ListPeerView(PermissionRequiredMixin, ListView):
 
 
 class CreatePeerView(PermissionRequiredMixin, CreateView):
-    permission_required = 'simple_vpn.add_wireguardpeer'
+    permission_required = 'django_wireguard.add_wireguardpeer'
     model = WireguardPeer
+    form = WireguardPeerForm
     template_name = 'vpn_manager/wireguardpeer_create.html'
     form_class = WireguardPeerForm
     success_url = reverse_lazy('vpn_manager:list_peers')
 
 
 class UpdatePeerView(PermissionRequiredMixin, UpdateView):
-    permission_required = 'simple_vpn.change_wireguardpeer'
+    permission_required = 'django_wireguard.change_wireguardpeer'
     model = WireguardPeer
+    form = WireguardPeerForm
     template_name = 'vpn_manager/wireguardpeer_update.html'
     form_class = WireguardPeerForm
     success_url = reverse_lazy('vpn_manager:list_peers')
 
 
 class DeletePeerView(PermissionRequiredMixin, DeleteView):
-    permission_required = 'simple_vpn.delete_wireguardpeer'
+    permission_required = 'django_wireguard.delete_wireguardpeer'
     model = WireguardPeer
     template_name = 'vpn_manager/wireguardpeer_confirm_delete.html'
     context_object_name = 'peer'
@@ -46,7 +48,7 @@ class DeletePeerView(PermissionRequiredMixin, DeleteView):
 
 
 class PeerDetailView(PermissionRequiredMixin, DetailView):
-    permission_required = 'simple_vpn.show_wireguardpeer'
+    permission_required = 'django_wireguard.show_wireguardpeer'
     model = WireguardPeer
     template_name = 'vpn_manager/wireguardpeer_detail.html'
     context_object_name = 'peer'

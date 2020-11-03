@@ -23,9 +23,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_wireguard',
     'crispy_forms',
     'bootstrap_pagination',
-    'simple_vpn',
 ] + list(map(lambda module: module[0], modules.MODULES))
 
 PLUGIN_MODULES = []
@@ -146,8 +146,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # SimpleVPN config
 
-SIMPLE_VPN_ENDPOINT = os.environ.get('SIMPLE_VPN_ENDPOINT', 'localhost')
+WIREGUARD_ENDPOINT = os.environ.get('SIMPLE_VPN_ENDPOINT', 'localhost')
 
-SIMPLE_VPN_SUBNET = os.environ.get('SIMPLE_VPN_ENDPOINT', '10.100.20.0/24')
+SIMPLE_VPN_DNS = os.environ.get('SIMPLE_VPN_DNS', '1.1.1.1,1.0.0.1')
 
-SIMPLE_VPN_STORE_PRIVATE_KEYS = False
+SIMPLE_VPN_INTERFACE = os.environ.get('SIMPLE_VPN_INTERFACE', 'simplevpn')

@@ -10,7 +10,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('simple_vpn', '0001_initial'),
+        ('django_wireguard', '0001_initial'),
     ]
 
     operations = [
@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('token', models.CharField(default=vpn_manager.models.gen_token, max_length=32, verbose_name='Token')),
-                ('peer', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='show_config_token', to='simple_vpn.wireguardpeer', verbose_name='WireGuard Peer')),
+                ('peer', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='show_config_token', to='django_wireguard.wireguardpeer', verbose_name='WireGuard Peer')),
             ],
         ),
     ]

@@ -15,7 +15,7 @@ class ShowConfigLink(models.Model):
     token = models.CharField(max_length=TOKEN_LENGTH,
                              default=gen_token,
                              verbose_name=_("Token"))
-    peer = models.OneToOneField('simple_vpn.WireguardPeer',
+    peer = models.OneToOneField('django_wireguard.WireguardPeer',
                                 on_delete=models.CASCADE,
                                 null=False,
                                 related_name='show_config_token',

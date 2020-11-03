@@ -26,8 +26,6 @@ COPY . /code/
 WORKDIR /code/
 
 RUN python manage.py collectstatic --clear --no-input --settings SimpleVPN.settings.development
-RUN python manage.py setup_interface --settings SimpleVPN.settings.development
 
 EXPOSE 8000
 CMD ./docker-entrypoint.sh
- 
