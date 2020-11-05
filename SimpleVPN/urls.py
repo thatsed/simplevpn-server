@@ -19,12 +19,12 @@ from django.conf import settings
 from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', RedirectView.as_view(url=settings.DEFAULT_MODULE_REDIRECT)),
 ]
 
 if settings.ENABLE_DJANGO_ADMIN:
-    urlpatterns.append(path('accounts/', include('django.contrib.auth.urls')),)
+    urlpatterns.append(path('admin/', admin.site.urls))
 
 for module in settings.PLUGIN_MODULES:
     urlpatterns.append(path(module['slug'] + '/',
