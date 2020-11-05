@@ -56,12 +56,24 @@ but restarting the container with the correct one will fix it.
 
 ------
 
+``SIMPLE_VPN_PORT``
+-------------------
+  Default: ``1194``
+
+The port WireGuard will be listening on.
+
+.. warning:: If you change this value, please change the port mapping of the ``docker run`` command accordingly.
+
+
+------
+
 ``SIMPLE_VPN_SUBNET``
 --------------------------------------
   Default: ``10.100.20.1/24``
 
-Set this variable to an interface address to be assign to the VPN.
+Set this variable to an interface address to be assigned to the VPN.
 
+You can specify multiple values by separating addresses with a comma.
 
 .. warning:: If you update this value, the interface will update too, but not the peers. If you expand the subnet, keeping the addresses already assigned to peers, it will be fine.
     If you instead remove from the subnet(s) addresses already assigned, you will need to update (through the Django Admin Panel) or delete and recreate the faulty peers.
@@ -77,6 +89,6 @@ Defaults to CloudFlare's DNS.
 
 ------
 
-``SIMPLE_VPN_DISABLE_DJANGO_ADMIN``
+``ENABLE_DJANGO_ADMIN``
 -----------------------------------
-Disable Django Admin Site. Set this variable without any value.
+Enable Django Admin Site. Set this variable without any value (it's ignored).

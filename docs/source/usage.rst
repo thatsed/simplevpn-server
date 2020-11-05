@@ -46,6 +46,17 @@ Copy and share the provided link.
     Peers with active share links will have a *Shared* badge on the corresponding row.
 
 
+Changing Login Password
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Execute this command (while the container is running) to change a user's password::
+
+    docker exec -it simplevpn python manage.py changepassword <username>
+
+ You can also manage users from the Django Admin Site. Be sure to enable it first by setting
+
+
+
 Advanced Topics
 ===============
 

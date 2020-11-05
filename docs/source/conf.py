@@ -81,6 +81,13 @@ html_favicon = "images/favicon.ico"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# These paths are either relative to html_static_path
+# or fully qualified paths (eg. https://...)
+html_css_files = [
+    'css/color.css',
+]
+
+
 html_theme_options = {
     'nav_title': 'SimpleVPN Server',
     'base_url': 'https://simplevpn.gitlab.io/simplevpn-server',
@@ -93,6 +100,7 @@ html_theme_options = {
         "index": "Create your own WireGuard-powered VPN Server with ease.",
         "installation": "Deploy your VPN",
         "usage": "SimpleVPN User Guide",
+        "customisation": "Customise SimpleVPN",
     },
 }
 
