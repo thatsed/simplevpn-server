@@ -14,4 +14,5 @@ urlpatterns = [
     path('peers/<int:pk>', views.PeerDetailView.as_view(), name='show_peer'),
     path('tools/qrcode', views.QRCodeGeneratorToolTemplateView.as_view(), name='tool_qrcode'),
     path('<slug:token>', views.PeerConfigurationView.as_view(), name='peer_config'),
+    path('api/peer/<int:pk>/share', views.PeerShareLinkAPI.as_view(), name='peer_link_api'),
 ]

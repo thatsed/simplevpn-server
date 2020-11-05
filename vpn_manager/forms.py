@@ -33,4 +33,10 @@ class WireguardPeerForm(forms.ModelForm):
             self.instance.dns = ''
             self.instance.allowed_ips = ','.join(
                 str(IPv4Interface(ip).network) for ip in self.instance.interface.get_address_list())
+
+        if self.instance.public_key != self.cleaned_data.get('public_key'):
+            # if public_key changed, remove private key
+            # if public_key is empty, this code will not be executed (as the cleaned value would be the initial)
+            self.instance.private_key = ''
+
         return super().save(commit)

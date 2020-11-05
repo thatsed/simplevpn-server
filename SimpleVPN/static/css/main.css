@@ -1,0 +1,26 @@
+@media (min-width: 768px) {
+    .navbar-expand-md .navbar-collapse.hide {
+        display: none !important;
+    }
+}
+.asteriskField {
+    color: red;
+    margin-left: 4px;
+}
+.login-form .asteriskField {
+    display: none;
+}
+.login-form .alert > ul {
+    padding: 6px 0;
+    list-style-type: none;
+}
+.login-form .alert > ul > li:not(:last-child) {
+    margin-bottom: 15px;
+}
+.alert > .alert-title {
+    display: block;
+    margin-bottom: 3px;
+}
+.nav-tabs .nav-link {
+    border: 0;
+}

@@ -2,6 +2,14 @@
 
 python manage.py migrate
 
+if [ -z $SIMPLE_VPN_SUBNET ]; then
+  export SIMPLE_VPN_SUBNET=10.100.20.1/24
+fi
+export SIMPLE_VPN_INTERFACE=simplevpn
+
+# split subnets and pass them as arguments
+python -c "print(' '.join('$SIMPLE_VPN_SUBNET'.split(',')))" | xargs python manage.py setup_interface $SIMPLE_VPN_INTERFACE --address
+
 if [ -f /data/.config ]; then
   echo "Loading configuration"
   source /data/.config
@@ -11,12 +19,6 @@ else
     export DJANGO_SECRET_KEY=$(tr -dc 'a-z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c50)
   fi
 
-  if [ -z $SIMPLE_VPN_SUBNET ]; then
-    export SIMPLE_VPN_SUBNET=10.100.20.1/24
-  fi
-  export SIMPLE_VPN_INTERFACE=simplevpn
-
-  echo $SIMPLE_VPN_SUBNET | xargs python manage.py setup_interface $SIMPLE_VPN_INTERFACE --address
   # echo $SIMPLE_VPN_SUBNET | xargs python manage.py create_peer simplevpn default --allowed-ips
   # if [ -z $DJANGO_SUPERUSER_PASSWORD ]; then
   #   export DJANGO_SUPERUSER_PASSWORD=$(tr -dc 'a-zA-Z0-9!@#$%^&*(-_=+)' < /dev/urandom | head -c16)

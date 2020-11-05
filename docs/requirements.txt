@@ -1,4 +1,5 @@
 sphinx
 sphinxcontrib-django
 sphinx-material
+sphinx-copybutton
 recommonmark

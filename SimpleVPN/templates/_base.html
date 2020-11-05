@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% block _head_content %}
+		<meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link href="{% static 'favicon.ico' %}" rel="icon">
+		<title>{% block _title %}{% endblock %}</title>
+	{% endblock %}
+	{% block _head_css %}
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+		<link href="{% static 'css/main.css' %}" rel="stylesheet">
+	{% endblock %}
+</head>
+<body>
+	{% block _body_content %}{% endblock %}
+	{% block _body_js %}
+		<script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+		<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
+	{% endblock %}
+</body>
+</html>

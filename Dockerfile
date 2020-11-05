@@ -11,7 +11,7 @@ ENV DJANGO_DATA_DIR /data
 # Install WireGuard deps
 RUN printf "deb http://httpredir.debian.org/debian buster-backports main non-free\ndeb-src http://httpredir.debian.org/debian buster-backports main non-free" > /etc/apt/sources.list.d/backports.list
 RUN apt update -y
-RUN apt install iptables iproute2 wireguard -y
+RUN apt install iptables iproute2 wireguard gettext -y
 
 # Install any needed packages specified in requirements.txt
 COPY ./requirements.txt /code/requirements.txt

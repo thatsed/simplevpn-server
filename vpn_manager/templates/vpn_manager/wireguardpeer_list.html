@@ -8,7 +8,7 @@
 	<style>
 		#share-link {
 			background-image: none;
-	    padding-right: 0;
+	    padding-right: 10px;
 	    background-color: inherit;
 		}
 	</style>
@@ -21,22 +21,31 @@
 {% block content %}
 	<div class="card">
 		<div class="card-header d-flex justify-content-between">
-			<h3>{% trans "Connections" %}</h3>
+			<h3>{% trans "Peers | Connections" %}</h3>
 			<a href="{% url 'vpn_manager:add_peer' %}" class="btn btn-primary ml-auto">{% trans "New" %}</a>
 		</div>
 		<div class="card-body p-0" style="min-height: 200px">
-			<table class="table table-borderless table-hover">
+			<table class="table table-borderless{% if peers %} table-hover{% endif %}">
 				{% for peer in peers %}
 			    <tr>
-			      <td class="lead py-1">{{ peer.name }}</td>
-						<td></td>
+			      <td>
+				      <span class="lead">{{ peer.name }}</span>
+			      </td>
+			      <td>
+				      {{ peer.address }}
+			      </td>
+			      <td>
+				      <a class="badge badge-success share-link" href="javascript:void(0)" data-id="{{ peer.pk }}" {% if not peer.show_config_token %}style="display: none"{% endif %}>
+					      {% trans "Shared" %}
+				      </a>
+			      </td>
 				    <td style="text-align: right">
 					    <div class="dropdown show">
 							  <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="peerOptionsLink{{ peer.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							    {% trans "Options" %}
 							  </a>
 							  <div class="dropdown-menu" aria-labelledby="peerOptionsLink{{ peer.pk }}" id="peerOptionsDropdown{{ peer.pk }}">
-								  <a class="dropdown-item share-link" href="{{ peer.show_config_token }}">{% trans "Share" %}</a>
+								  <a class="dropdown-item share-link" href="javascript:void(0)" data-id="{{ peer.pk }}">{% trans "Share" %}</a>
 								  <a class="dropdown-item" href="{% url 'vpn_manager:show_peer' peer.pk %}">{% trans "Show Configuration" %}</a>
 								  <a class="dropdown-item" href="{% url 'vpn_manager:edit_peer' peer.pk %}">{% trans "Edit" %}</a>
 								  <a class="dropdown-item text-danger" href="{% url 'vpn_manager:delete_peer' peer.pk %}">{% trans "Delete" %}</a>
@@ -72,16 +81,32 @@
 				<div class="modal-body p-0">
 					<div class="card border-0 mb-0">
 						<div class="card-body">
-							<div class="input-group mb-3">
-								<input class="form-control" type="text" id="share-link" readonly />
-							  <div class="input-group-append">
-							    <button class="btn btn-primary input-group-text copy-to-clipboard" data-target="#share-link" onclick="$('#share-link').addClass('is-valid')">
-								    {% trans "Copy" %}
-							    </button>
-							  </div>
-								<div class="valid-feedback">
-					        {% trans "Copied to Clipboard" %}
-					      </div>
+							<div id="link-error">
+								<div class="alert alert-danger" id="link-error">{% trans "An error occurred. Please try refreshing the page." %}</div>
+							</div>
+							<div id="link-spinner">
+								<div class="d-flex my-5" id="link-spinner">
+									<div class="spinner-grow text-primary mx-auto" role="status">
+									  <span class="sr-only">{% trans "Loading" %}</span>
+									</div>
+								</div>
+							</div>
+							<div id="link-create">
+								<button class="btn btn-block btn-success" id="link-create-btn">{% trans "Create link" %}</button>
+							</div>
+							<div id="link-show">
+								<div class="input-group mb-3">
+									<input class="form-control" type="text" id="share-link" readonly />
+								  <div class="input-group-append">
+								    <button class="btn btn-primary copy-to-clipboard" data-target="#share-link" onclick="$('#share-link').addClass('is-valid')">
+									    {% trans "Copy" %}
+								    </button>
+								  </div>
+									<div class="valid-feedback">
+						        {% trans "Copied to Clipboard" %}
+						      </div>
+								</div>
+								<button class="btn btn-sm btn-block btn-danger mt-2" id="link-delete-btn">{% trans "Disable Link" %}</button>
 							</div>
 						</div>
 					</div>
@@ -93,13 +118,85 @@
 
 {% block extra_js %}
 	<script type="text/javascript">
+		const $linkModal = $('#shareLinkModal');
+		const $createBtn = $('#link-create-btn');
+		const $deleteBtn = $('#link-delete-btn');
+		const $linkInput = $('#share-link');
+		const $views = {
+		  'spinner': $('#link-spinner'),
+			'error': $('#link-error'),
+			'create': $('#link-create'),
+			'show': $('#link-show')
+		}
+		let peerId;
+
+		function linkView(requestedView) {
+		  let found = false;
+
+		  for (let view in $views) {
+	      if (view === requestedView) {
+          found = true;
+          $views[view].show();
+	      } else {
+	        $views[view].hide();
+	      }
+		  }
+		  if (!found) {
+		    $views.error.show();
+		  }
+		}
+
 		$('.share-link').on('click', function () {
-			const $link = $('#share-link');
-			const $modal = $('#shareLinkModal');
-			let link = $(this).attr('href');
-			$link.val(link);
-			$modal.modal('show');
-      return false;
+			peerId = $(this).data('id');
+
+			$linkModal.modal('show');
+
+			// use a framework they said, and they might have been right.
+			linkView('spinner');
+
+      $.ajax({
+        url: formatUrl('{% url "vpn_manager:peer_link_api" 0 %}', peerId),
+        method: 'get',
+        timeout: 10000,
+        success: function (data, status, XHR) {
+					$linkInput.val(data);
+					linkView('show');
+        },
+        error: function (request, status, error) {
+		      linkView('create');
+        }
+      });
+		});
+
+		$createBtn.on('click', function () {
+			$.ajax({
+        url: formatUrl('{% url "vpn_manager:peer_link_api" 0 %}', peerId),
+        method: 'post',
+        timeout: 10000,
+        success: function (data, status, XHR) {
+					linkView('show');
+					$(`.badge[data-id=${peerId}]`).show();
+					$linkInput.val(data);
+        },
+        error: function (request, status, error) {
+		      linkView('error');
+        }
+      });
+    });
+
+		$deleteBtn.on('click', function () {
+			$.ajax({
+	      url: formatUrl('{% url "vpn_manager:peer_link_api" 0 %}', peerId),
+	      method: 'delete',
+	      timeout: 10000,
+	      success: function (data, status, XHR) {
+			    $(`.badge[data-id=${peerId}]`).hide();
+					linkView('create');
+	      },
+	      error: function (request, status, error) {
+		      linkView('error');
+	      }
+			});
 		});
 	</script>
 {% endblock %}

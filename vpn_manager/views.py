@@ -1,5 +1,8 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 
 from vpn_manager.forms import WireguardPeerForm
@@ -56,6 +59,34 @@ class PeerDetailView(PermissionRequiredMixin, DetailView):
 
 class QRCodeGeneratorToolTemplateView(TemplateView):
     template_name = 'vpn_manager/generate_qrcode_tool.html'
+
+
+class PeerShareLinkAPI(View):
+
+    def get(self, request, pk):
+        try:
+            link = ShowConfigLink.objects.get(peer_id=pk)
+        except ShowConfigLink.DoesNotExist:
+            return HttpResponse(status=404)
+
+        return HttpResponse(link.get_link(request), status=200)
+
+    def post(self, request, pk):
+        try:
+            peer = WireguardPeer.objects.get(pk=pk)
+        except WireguardPeer.DoesNotExist:
+            return HttpResponse(status=404)
+
+        link, created = ShowConfigLink.objects.get_or_create(peer=peer)
+        return HttpResponse(link.get_link(request), status=201 if created else 200)
+
+    def delete(self, request, pk):
+        link = ShowConfigLink.objects.filter(peer_id=pk)
+        if not link.exists():
+            return HttpResponse(status=404)
+
+        link.delete()
+        return HttpResponse(status=204)
 
 
 class PeerConfigurationView(DetailView):

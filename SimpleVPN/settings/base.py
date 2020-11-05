@@ -4,10 +4,8 @@ Django base settings for SimpleVPN project.
 
 import os
 
-from django.core.exceptions import ImproperlyConfigured
-from django.urls import reverse_lazy
-
-from SimpleVPN import modules
+from django.utils.translation import ugettext_lazy as _
+from .modules_config import *
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -26,30 +24,16 @@ INSTALLED_APPS = [
     'django_wireguard',
     'crispy_forms',
     'bootstrap_pagination',
-] + list(map(lambda module: module[0], modules.MODULES))
+] + MODULE_APPS
 
-PLUGIN_MODULES = []
+HEADER_LINKS = (
+    (_('Repo'), 'https://gitlab.com/simplevpn/simplevpn-server'),
+    (_('Help'), 'https://simplevpn.gitlab.io/simplevpn-server'),
+)
 
-for module_name, module_conf in modules.MODULES:
-    conf = {
-        'title': module_name.replace('_', ' ').capitalize(),
-        'slug': module_name,
-        'namespace': module_name,
-        'module_name': module_name,
-    }
-    conf.update(module_conf)
+APP_TITLE = "SimpleVPN"
 
-    conf['index'] = reverse_lazy(f"{conf['namespace']}:{conf.get('index', 'index')}")
-    PLUGIN_MODULES.append(conf)
-
-if not PLUGIN_MODULES:
-    raise ImproperlyConfigured("No module loaded.")
-
-DEFAULT_MODULE = str(getattr(modules, 'DEFAULT_MODULE', PLUGIN_MODULES[0]['module_name']))
-if DEFAULT_MODULE not in map(lambda module: module['module_name'], PLUGIN_MODULES):
-    raise ImproperlyConfigured("DEFAULT_MODULE is not in MODULES")
-
-DEFAULT_MODULE_REDIRECT = next(filter(lambda module: module['module_name'] == DEFAULT_MODULE, PLUGIN_MODULES))['index']
+LOGIN_REDIRECT_URL = DEFAULT_MODULE_REDIRECT
 
 
 # Middleware
@@ -152,4 +136,7 @@ SIMPLE_VPN_DNS = os.environ.get('SIMPLE_VPN_DNS', '1.1.1.1,1.0.0.1')
 
 SIMPLE_VPN_INTERFACE = os.environ.get('SIMPLE_VPN_INTERFACE', 'simplevpn')
 
-SIMPLE_VPN_DISABLE_SHARE_LINK = os.environ.get('SIMPLE_VPN_DISABLE_SHARE_LINK') == 'true'
+ENABLE_DJANGO_ADMIN = os.environ.get('ENABLE_DJANGO_ADMIN') is not None
+
+# TODO: not implemented
+# SIMPLE_VPN_DISABLE_SHARE_LINK = os.environ.get('SIMPLE_VPN_DISABLE_SHARE_LINK') is not None

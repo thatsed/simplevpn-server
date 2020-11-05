@@ -1,15 +1,50 @@
 {% extends "./app_base.html" %}
+{% load i18n %}
 
 {% block breadcrumb_items %}
 	<li class="breadcrumb-item active" aria-current="page">Home</li>
 {% endblock %}
 
 {% block content %}
-	<div class="container">
-		<div class="jumbotron">
-			<h1>Simple VPN</h1>
-			<hr />
-			<p class="text-justify">{% lorem %}</p>
+	<div class="jumbotron">
+		<h1>Simple VPN</h1>
+		<hr />
+		<div class="text-justify">
+			<p>{% trans "This module lets you manage your VPN connections." %}</p>
+		  <a class="btn btn-primary btn-block mt-4" data-toggle="collapse" href="#collapseHelp" role="button" aria-expanded="false" aria-controls="collapseHelp">
+		    {% trans "Quick Reference" %}
+		  </a>
+			<div class="collapse" id="collapseHelp">
+				<h5 class="mt-4">{% trans "Creating a peer" %}</h5>
+				<hr class="mt-0" />
+				<ol>
+					<li>{% blocktrans %}Navigate to the <span class="badge badge-primary">VPN</span> panel, then click on <span class="badge badge-primary">New</span>.{% endblocktrans %}</li>
+					<li>{% blocktrans %}Fill in the form with a name for this peer (for example, "My Smartphone"){% endblocktrans %}</li>
+			    <li>{% blocktrans %}<span class="badge badge-info">Optional</span> for an extra layer of security, provide your own public key. Leave it empty for auto-generation{% endblocktrans %}</li>
+					<li>{% blocktrans %}Select <span class="font-weight-bold text-primary">Redirect traffic</span> to forward all traffic through the VPN (standard usage){% endblocktrans %}</li>
+					<li>{% blocktrans %}Select <span class="font-weight-bold text-primary">Killswitch</span> if you want any traffic not going through the VPN to be dropped. Uncheck this option to continue accessing your local network (eg. printers, smart devices and such) even when connected to the VPN{% endblocktrans %}</li>
+					<li>{% blocktrans %}Click on <span class="badge badge-primary">Save</span>{% endblocktrans %}</li>
+				</ol>
+				<h5 class="mt-4">{% trans "Downloading configurations" %}</h5>
+				<hr class="mt-0" />
+				<ol>
+					<li>{% blocktrans %}Select the <span class="badge badge-primary">VPN</span> panel{% endblocktrans %}</li>
+					<li>{% blocktrans %}From the list, click on the <span class="badge badge-primary">Options</span> button matching the peer you want to see the configuration of, then select <span class="badge badge-secondary">Show Configuration</span> from the menu{% endblocktrans %}</li>
+					<li>{% blocktrans %}<span class="badge badge-info">Incomplete configuration</span> if the private key is missing, a warning will be shown. In that case, copy the configuration and replace the private key field manually. You may use the <span class="badge badge-primary">QRCode Tool</span> to generate a convenient valid QR Code{% endblocktrans %}</li>
+			    <li>{% blocktrans %}Download the configuration or scan the QR code{% endblocktrans %}</li>
+				</ol>
+				<h5 class="mt-4">Sharing configurations</h5>
+				<hr class="mt-0" />
+				<ol>
+					<li>{% blocktrans %}Select the <span class="badge badge-primary">VPN</span> panel{% endblocktrans %}</li>
+					<li>{% blocktrans %}From the list, if the peer has a <span class="badge badge-success">Shared</span> badge, click on it.
+						If it doesn't, click on the <span class="badge badge-primary">Options</span> button then select <span class="badge badge-secondary">Share</span> from the menu.
+						You will be asked to create a new link: press on the <span class="badge badge-success">Create link</span> button to do so. The link will then appear, alongside the <span class="badge badge-success">Shared</span> badge.
+					{% endblocktrans %}</li>
+			    <li>{% blocktrans %}Copy the link provided and share it.{% endblocktrans %}</li>
+					<li>{% blocktrans %}<span class="badge badge-info">Disabling the link</span> you may disable the link anytime.{% endblocktrans %}</li>
+				</ol>
+			</div>
 		</div>
 	</div>
 {% endblock %}
