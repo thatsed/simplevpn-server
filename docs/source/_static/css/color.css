@@ -1,11 +1,11 @@
-.md-header {
+.md-header, .md-nav__source {
     background-color: #1b1b1b !important;
 }
-
-.md-hero {
+.md-tabs, .md-hero {
     background-color: #212121 !important;
 }
-
-.md-tabs {
-    background-color: #212121 !important;
+@media only screen and (max-width: 76.1875em) {
+    .md-nav__title--site {
+        background-color: #212121 !important;
+    }
 }
