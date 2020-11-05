@@ -5,10 +5,13 @@ python manage.py migrate
 if [ -z $SIMPLE_VPN_SUBNET ]; then
   export SIMPLE_VPN_SUBNET=10.100.20.1/24
 fi
+if [ -z $SIMPLE_VPN_PORT ]; then
+  export $SIMPLE_VPN_PORT=1194
+fi
 export SIMPLE_VPN_INTERFACE=simplevpn
 
 # split subnets and pass them as arguments
-python -c "print(' '.join('$SIMPLE_VPN_SUBNET'.split(',')))" | xargs python manage.py setup_interface $SIMPLE_VPN_INTERFACE --address
+python -c "print(' '.join('$SIMPLE_VPN_SUBNET'.split(',')))" | xargs python manage.py setup_interface $SIMPLE_VPN_INTERFACE --listen-port $SIMPLE_VPN_PORT --address
 
 if [ -f /data/.config ]; then
   echo "Loading configuration"
