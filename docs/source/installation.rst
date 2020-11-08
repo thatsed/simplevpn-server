@@ -26,6 +26,7 @@ Docker deployment
                  -p 8000:8000 \
                  -p 1194:1194/udp \
                  -v /opt/simplevpn:/data \
+                 --name simplevpn \
                  registry.gitlab.com/simplevpn/simplevpn-server:stable
 
 2. Create an administration account::

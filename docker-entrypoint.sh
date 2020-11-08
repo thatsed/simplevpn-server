@@ -1,12 +1,13 @@
 #!/bin/bash
 
 python manage.py migrate
+echo $(whoami)
 
 if [ -z $SIMPLE_VPN_SUBNET ]; then
   export SIMPLE_VPN_SUBNET=10.100.20.1/24
 fi
 if [ -z $SIMPLE_VPN_PORT ]; then
-  export $SIMPLE_VPN_PORT=1194
+  export SIMPLE_VPN_PORT=1194
 fi
 export SIMPLE_VPN_INTERFACE=simplevpn
 
