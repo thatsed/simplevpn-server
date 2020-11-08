@@ -53,8 +53,7 @@ Execute this command (while the container is running) to change a user's passwor
 
     docker exec -it simplevpn python manage.py changepassword <username>
 
- You can also manage users from the Django Admin Site. Be sure to enable it first by setting
-
+You can also manage users from the Django Admin Site. Be sure to enable it first by setting
 
 
 Advanced Topics
