@@ -24,4 +24,4 @@ COPY . .
 RUN python manage.py collectstatic --clear --no-input
 
 EXPOSE 8000
-CMD ./docker-entrypoint.sh
+CMD sh docker-entrypoint.sh

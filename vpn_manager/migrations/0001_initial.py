@@ -21,5 +21,6 @@ class Migration(migrations.Migration):
                 ('token', models.CharField(default=vpn_manager.models.gen_token, max_length=32, verbose_name='Token')),
                 ('peer', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='show_config_token', to='django_wireguard.wireguardpeer', verbose_name='WireGuard Peer')),
             ],
+            options={'verbose_name': 'Configuration Share Link', 'verbose_name_plural': 'Configuration Share Links'},
         ),
     ]
