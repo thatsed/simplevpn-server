@@ -17,10 +17,8 @@
 			<div class="card-body">
 				<div class="alert alert-danger">
 					<strong>{% trans "Confirm deletion" %}</strong><br>
-					{% spaceless %}{% blocktrans with name=peer.name %}
-					By deleting this peer, you will disrupt current connections and invalidate the credentials.
-					Are you sure you want to delete <strong>{{ name }}</strong>?
-					{% endblocktrans %}{% endspaceless %}
+					{% spaceless %}{% blocktrans with name=peer.name %}By deleting this peer you will disrupt current connections and invalidate their credentials.
+Are you sure you want to delete <strong>{{ name }}</strong>?{% endblocktrans %}{% endspaceless %}
 				</div>
 				<form method="post">
 					{% csrf_token %}

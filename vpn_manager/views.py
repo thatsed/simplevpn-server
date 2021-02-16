@@ -1,12 +1,11 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
+from django_wireguard.models import WireguardPeer
 
 from vpn_manager.forms import WireguardPeerForm
-from django_wireguard.models import WireguardPeer
 from vpn_manager.models import ShowConfigLink
 
 

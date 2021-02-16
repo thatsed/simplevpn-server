@@ -4,7 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class VpnManagerConfig(AppConfig):
     name = 'vpn_manager'
-    verbose_name = "VPN Manager Module"
+    verbose_name = _("VPN Manager Module")
+
     module_config = {
         "title": _("Manage VPN"),
         "slug": "vpn",
