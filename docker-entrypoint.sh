@@ -25,7 +25,7 @@ fi
 
 # get endpoint from https://checkip.amazonaws.com if none is given
 if [ -z $SIMPLE_VPN_ENDPOINT ]; then
-  export SIMPLE_VPN_ENDPOINT=$(python -c "import requests;print(requests.get('https://checkip.amazonaws.com/').text.strip())")
+  export SIMPLE_VPN_ENDPOINT=$(curl -s https://checkip.amazonaws.com)
   echo "export SIMPLE_VPN_ENDPOINT=\"$SIMPLE_VPN_ENDPOINT\"" >> /data/.config
 fi
 

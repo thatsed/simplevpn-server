@@ -20,11 +20,11 @@
 
 {% block content %}
 	<div class="card">
-		<div class="card-header d-flex justify-content-between">
+		<div class="card-header d-md-flex justify-content-between">
 			<h3>{% trans "Peers | Connections" %}</h3>
-			<a href="{% url 'vpn_manager:add_peer' %}" class="btn btn-primary ml-auto">{% trans "New" %}</a>
-		</div>
-		<div class="card-body p-0" style="min-height: 200px">
+      <a href="{% url 'vpn_manager:add_peer' %}" class="btn btn-primary d-block d-md-inline-block">{% trans "New" %}</a>
+    </div>
+    <div class="card-body table-responsive p-0" style="min-height: 200px">
 			<table class="table table-borderless{% if peers %} table-hover{% endif %}">
 				{% for peer in peers %}
 			    <tr>
