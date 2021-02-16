@@ -52,8 +52,12 @@ Environment Variables
 ``SIMPLE_VPN_ENDPOINT``
 -----------------------
 
-Set this variable to your machine's IP address or domain name. Settings this to an incorrect value will prevent you from connecting to the VPN,
+Set this variable to your machine's IP address or domain name.
+Settings this to an incorrect value will prevent you from connecting to the VPN,
 but restarting the container with the correct one will fix it.
+
+If left empty, your machine's public IP will be inferred by calling https://checkip.amazonaws.com
+
 
 ------
 

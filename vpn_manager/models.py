@@ -1,12 +1,8 @@
 import secrets
 
-from django.conf import settings
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
-from django_wireguard.models import WireguardPeer
 
 TOKEN_LENGTH = 32
 
@@ -24,6 +20,10 @@ class ShowConfigLink(models.Model):
                                 null=False,
                                 related_name='show_config_token',
                                 verbose_name=_("WireGuard Peer"))
+
+    class Meta:
+        verbose_name = _("Configuration Share Link")
+        verbose_name_plural = _("Configuration Share Links")
 
     def get_link(self, request=None):
         url = reverse_lazy('vpn_manager:peer_config', args=[self.token])

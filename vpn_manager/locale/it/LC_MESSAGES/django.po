@@ -1,0 +1,342 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-15 22:48+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps.py:7
+msgid "VPN Manager Module"
+msgstr "Modulo Gestione VPN"
+
+#: apps.py:10 templates/vpn_manager/app_base.html:8
+msgid "Manage VPN"
+msgstr "Gestisci VPN"
+
+#: forms.py:12
+msgid "Redirect peer traffic through the VPN"
+msgstr "Redireziona traffico del peer attraverso la VPN"
+
+#: forms.py:15
+msgid "Block all traffic not directed to VPN"
+msgstr "Blocca tutto il traffico non diretto verso la VPN"
+
+#: models.py:21
+msgid "Token"
+msgstr "Token"
+
+#: models.py:26
+msgid "WireGuard Peer"
+msgstr "Peer WireGuard"
+
+#: templates/vpn_manager/generate_qrcode_tool.html:8
+msgid "QRCode Tool"
+msgstr "Strumento QRCode"
+
+#: templates/vpn_manager/generate_qrcode_tool.html:12
+msgid "Tools"
+msgstr "Strumenti"
+
+#: templates/vpn_manager/generate_qrcode_tool.html:13
+msgid "QRCode Generator"
+msgstr "Generatore QRCode"
+
+#: templates/vpn_manager/generate_qrcode_tool.html:20
+msgid "Generate a QRCode for a WireGuard configuration."
+msgstr "Genera codice QR per una configurazione WireGuard."
+
+#: templates/vpn_manager/generate_qrcode_tool.html:24
+msgid ""
+"<strong class=\"alert-title\">Notice</strong> Data submitted into this form "
+"<strong>will not</strong> be uploaded anywhere."
+msgstr ""
+"<strong class=\"alert-title\">Avviso</strong> I dati inseriti in questo form "
+"<strong>non saranno</strong> caricati da nessuna parte."
+
+#: templates/vpn_manager/generate_qrcode_tool.html:27
+#: templates/vpn_manager/wireguardpeer_detail.html:29
+msgid "Text Configuration"
+msgstr "Testo della Configurazione"
+
+#: templates/vpn_manager/generate_qrcode_tool.html:34
+msgid "Update"
+msgstr "Aggiorna"
+
+#: templates/vpn_manager/index.html:13
+msgid "This module lets you manage your VPN connections."
+msgstr "Questo modulo ti permette di gestire le connessioni alla tua VPN."
+
+#: templates/vpn_manager/index.html:15
+msgid "Quick Reference"
+msgstr "Guida Rapida"
+
+#: templates/vpn_manager/index.html:18
+msgid "Creating a peer"
+msgstr "Creazione di un peer"
+
+#: templates/vpn_manager/index.html:21
+msgid ""
+"Navigate to the <span class=\"badge badge-primary\">VPN</span> panel, then "
+"click on <span class=\"badge badge-primary\">New</span>."
+msgstr ""
+"Apri il pannello <span class=\"badge badge-primary\">VPN</span>, poi premi "
+"su <span class=\"badge badge-primary\">Nuovo</span>."
+
+#: templates/vpn_manager/index.html:22
+msgid ""
+"Fill in the form with a name for this peer (for example, \"My Smartphone\")"
+msgstr "Riempi il form con un nome per il peer (ad esempio, \"Cellulare\")"
+
+#: templates/vpn_manager/index.html:23
+msgid ""
+"<span class=\"badge badge-info\">Optional</span> for an extra layer of "
+"security, provide your own public key. Leave it empty for auto-generation"
+msgstr ""
+
+#: templates/vpn_manager/index.html:24
+msgid ""
+"Select <span class=\"font-weight-bold text-primary\">Redirect traffic</span> "
+"to forward all traffic through the VPN (standard usage)"
+msgstr ""
+"Seleziona <span class=\"font-weight-bold text-primary\">Redireziona "
+"traffico</span> per inoltrare tutto il traffico attraverso la VPN (uso "
+"standard)"
+
+#: templates/vpn_manager/index.html:25
+msgid ""
+"Select <span class=\"font-weight-bold text-primary\">Killswitch</span> if "
+"you want any traffic not going through the VPN to be dropped. Uncheck this "
+"option to continue accessing your local network (eg. printers, smart devices "
+"and such) even when connected to the VPN"
+msgstr ""
+"Seleziona <span class=\"font-weight-bold text-primary\">Killswitch</span> se "
+"vuoi bloccare tutto il traffico in uscita che non sia diretto alla VPN. "
+"Disattiva questa opzione per accedere alla rete locale (eg. stampanti, smart "
+"TV e simili) anche quando sei connesso alla VPN"
+
+#: templates/vpn_manager/index.html:26
+msgid "Click on <span class=\"badge badge-primary\">Save</span>"
+msgstr "Premi su <span class=\"badge badge-primary\">Salva</span>"
+
+#: templates/vpn_manager/index.html:28
+msgid "Downloading configurations"
+msgstr "Scaricare configurazioni"
+
+#: templates/vpn_manager/index.html:31 templates/vpn_manager/index.html:39
+msgid "Select the <span class=\"badge badge-primary\">VPN</span> panel"
+msgstr "Seleziona il pannello <span class=\"badge badge-primary\">VPN</span>"
+
+#: templates/vpn_manager/index.html:32
+msgid ""
+"From the list, click on the <span class=\"badge badge-primary\">Options</"
+"span> button matching the peer you want to see the configuration of, then "
+"select <span class=\"badge badge-secondary\">Show Configuration</span> from "
+"the menu"
+msgstr ""
+"Dalla lista, premi sul pulsante <span class=\"badge badge-primary\">Opzioni</"
+"span> corrispondente al peer di cui vuoi visualizzare la configurazione, poi "
+"seleziona <span class=\"badge badge-secondary\">Mostra Configurazione</span> "
+"dal menu"
+
+#: templates/vpn_manager/index.html:33
+msgid ""
+"<span class=\"badge badge-info\">Incomplete configuration</span> if the "
+"private key is missing, a warning will be shown. In that case, copy the "
+"configuration and replace the private key field manually. You may use the "
+"<span class=\"badge badge-primary\">QRCode Tool</span> to generate a "
+"convenient valid QR Code"
+msgstr ""
+"<span class=\"badge badge-info\">Configurazioni incomplete</span> se la "
+"chiave privata è assente, verrà mostrato un avviso. In tal caso, copiare la "
+"configurazione e sostituire il campo Private Key manualmente. Puoi usufruire "
+"dello <span class=\"badge badge-primary\">Strumento QRCode</span> per "
+"generare un comodo codice QR valido."
+
+#: templates/vpn_manager/index.html:34
+msgid "Download the configuration or scan the QR code"
+msgstr "Scarica la configurazione o scansiona il codice QR"
+
+#: templates/vpn_manager/index.html:40
+msgid ""
+"From the list, if the peer has a <span class=\"badge badge-success\">Shared</"
+"span> badge, click on it.\n"
+"If it doesn't, click on the <span class=\"badge badge-primary\">Options</"
+"span> button then select <span class=\"badge badge-secondary\">Share</span> "
+"from the menu.\n"
+"You will be asked to create a new link: press on the <span class=\"badge "
+"badge-success\">Create link</span> button to do so. The link will then "
+"appear, alongside the <span class=\"badge badge-success\">Shared</span> "
+"badge."
+msgstr ""
+"Dalla lista, se il peer ha il badge <span class=\"badge badge-success"
+"\">Condiviso</span> premilo.\n"
+"Altrimenti premi su <span class=\"badge badge-primary\">Opzioni</span> poi "
+"seleziona <span class=\"badge badge-secondary\">Condividi</span> dal menu.\n"
+"Ti verrà richiesto di creare un nuovo Link: per farlo, premi sul pulsante "
+"<span class=\"badge badge-success\">Crea Link</span>. Il collegamento verrà "
+"generato e mostrato, insieme al badge <span class=\"badge badge-success"
+"\">Condiviso</span>"
+
+#: templates/vpn_manager/index.html:43
+msgid "Copy the link provided and share it."
+msgstr "Copia il link fornito e condividilo."
+
+#: templates/vpn_manager/index.html:44
+msgid ""
+"<span class=\"badge badge-info\">Disabling the link</span> you may disable "
+"the link anytime."
+msgstr ""
+"<span class=\"badge badge-info\">Disabilitare il link</span> puoi "
+"disabilitare il link in qualunque momento."
+
+#: templates/vpn_manager/wireguardpeer_confirm_delete.html:6
+#: templates/vpn_manager/wireguardpeer_create.html:7
+#: templates/vpn_manager/wireguardpeer_detail.html:12
+#: templates/vpn_manager/wireguardpeer_list.html:18
+#: templates/vpn_manager/wireguardpeer_update.html:7
+msgid "Peers"
+msgstr "Peers"
+
+#: templates/vpn_manager/wireguardpeer_confirm_delete.html:8
+#: templates/vpn_manager/wireguardpeer_list.html:51
+msgid "Delete"
+msgstr "Elimina"
+
+#: templates/vpn_manager/wireguardpeer_confirm_delete.html:15
+#, python-format
+msgid "Confirm deletion of peer <strong>%(name)s</strong>"
+msgstr "Conferma eliminazione del peer <strong>%(name)s</strong>"
+
+#: templates/vpn_manager/wireguardpeer_confirm_delete.html:19
+msgid "Confirm deletion"
+msgstr "Conferma eliminazione"
+
+#: templates/vpn_manager/wireguardpeer_confirm_delete.html:20
+#, python-format
+msgid ""
+"By deleting this peer you will disrupt current connections and invalidate "
+"their credentials.\n"
+"Are you sure you want to delete <strong>%(name)s</strong>?"
+msgstr ""
+"Eliminando questo peer interromperai le sue connessioni e ne invaliderai le credenziali.ùn"
+"Sei sicuro di voler eliminare <strong>%(name)s</strong>?"
+
+#: templates/vpn_manager/wireguardpeer_confirm_delete.html:25
+msgid "Confirm"
+msgstr "Conferma"
+
+#: templates/vpn_manager/wireguardpeer_create.html:4
+msgid "Create new Peer"
+msgstr "Crea nuovo Peer"
+
+#: templates/vpn_manager/wireguardpeer_create.html:8
+#: templates/vpn_manager/wireguardpeer_list.html:25
+msgid "New"
+msgstr "Nuovo"
+
+#: templates/vpn_manager/wireguardpeer_detail.html:8
+#: templates/vpn_manager/wireguardpeer_detail.html:20
+#, python-format
+msgid "Download %(name)s's configuration"
+msgstr "Scarica la configurazione di %(name)s"
+
+#: templates/vpn_manager/wireguardpeer_detail.html:25
+msgid ""
+"<strong class=\"alert-title\">Warning</strong> This configuration must be "
+"completed with the PrivateKey previously generated. For reference, the "
+"corresponding PublicKey is shown instead with a note."
+msgstr ""
+"<strong class=\"alert-title\">Warning</strong> This configuration must be "
+"completed with the PrivateKey previously generated. For reference, the "
+"corresponding PublicKey is shown instead with a note."
+
+#: templates/vpn_manager/wireguardpeer_detail.html:36
+#: templates/vpn_manager/wireguardpeer_list.html:102
+msgid "Copy"
+msgstr "Copia"
+
+#: templates/vpn_manager/wireguardpeer_detail.html:39
+msgid "Download"
+msgstr "Scarica"
+
+#: templates/vpn_manager/wireguardpeer_form.html:12
+msgid "Save"
+msgstr "Salva"
+
+#: templates/vpn_manager/wireguardpeer_list.html:5
+msgid "All Peers"
+msgstr "Tutti i Peer"
+
+#: templates/vpn_manager/wireguardpeer_list.html:24
+msgid "Peers | Connections"
+msgstr "Peers | Connessioni"
+
+#: templates/vpn_manager/wireguardpeer_list.html:39
+msgid "Shared"
+msgstr "Condiviso"
+
+#: templates/vpn_manager/wireguardpeer_list.html:45
+msgid "Options"
+msgstr "Opzioni"
+
+#: templates/vpn_manager/wireguardpeer_list.html:48
+msgid "Share"
+msgstr "Condividi"
+
+#: templates/vpn_manager/wireguardpeer_list.html:49
+msgid "Show Configuration"
+msgstr "Mostra Configurazione"
+
+#: templates/vpn_manager/wireguardpeer_list.html:50
+#: templates/vpn_manager/wireguardpeer_update.html:9
+msgid "Edit"
+msgstr "Modifica"
+
+#: templates/vpn_manager/wireguardpeer_list.html:59
+msgid ""
+"No connection. Click on the <span class=\"text-primary font-weight-bold"
+"\">New</span> button to start adding connections."
+msgstr ""
+"Nessuna connessione. Premi sul pulsante <span class=\"text-primary font-weight-bold"
+"\">Nuovo</span> per cominciare ad agggiungere connessioni."
+
+#: templates/vpn_manager/wireguardpeer_list.html:76
+msgid "Share Configuration Download Link"
+msgstr "Condividi il Link di Downoad della Configurazione"
+
+#: templates/vpn_manager/wireguardpeer_list.html:85
+msgid "An error occurred. Please try refreshing the page."
+msgstr "Si è verificato un errore. Provare a ricaricare la pagina."
+
+#: templates/vpn_manager/wireguardpeer_list.html:90
+msgid "Loading"
+msgstr "Caricamento"
+
+#: templates/vpn_manager/wireguardpeer_list.html:95
+msgid "Create link"
+msgstr "Crea Link"
+
+#: templates/vpn_manager/wireguardpeer_list.html:106
+msgid "Copied to Clipboard"
+msgstr "Copiato negli Appunti"
+
+#: templates/vpn_manager/wireguardpeer_list.html:109
+msgid "Disable Link"
+msgstr "Disabilita Link"
+
+#: templates/vpn_manager/wireguardpeer_update.html:4
+msgid "Edit Peer"
+msgstr "Modifica Peer"

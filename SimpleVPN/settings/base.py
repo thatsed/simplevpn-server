@@ -21,9 +21,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_wireguard',
+
     'crispy_forms',
     'bootstrap_pagination',
+
+    'django_wireguard',
 ] + MODULE_APPS
 
 HEADER_LINKS = (

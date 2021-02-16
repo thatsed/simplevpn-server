@@ -6,6 +6,7 @@ services:
 
 stages:
   - build
+  - test
   - release
 
 build-docker:
@@ -22,11 +23,19 @@ build-docker:
     - dev
     - stable
 
+test:
+  image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  before_script:
+    - pip install coverage
+  script:
+    - python manage.py test
+
 pages:
   image: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
   stage: release
-  script:
+  before_script:
     - pip install -r docs/requirements.txt
+  script:
     - cd docs
     - make html
     - mv build/html ../public
@@ -34,4 +43,8 @@ pages:
     paths:
       - public
   only:
-    - stable
+    refs:
+     - stable
+     - dev
+    changes:
+     - docs/*
